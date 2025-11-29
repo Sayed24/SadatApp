@@ -1,1 +1,68 @@
 
+function startSetup() {
+    document.getElementById("welcomeScreen").classList.remove("active");
+    document.getElementById("setupScreen").classList.add("active");
+}
+
+document.getElementById("setupForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const fullName = document.getElementById("fullName").value;
+    const username = document.getElementById("username").value;
+    const bio = document.getElementById("bio").value;
+    const fileInput = document.getElementById("profilePic");
+
+    let imageURL = "";
+
+    if (fileInput.files.length > 0) {
+        const reader = new FileReader();
+        reader.onload = function () {
+            imageURL = reader.result;
+            saveProfile(fullName, username, bio, imageURL);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+    } else {
+        saveProfile(fullName, username, bio, imageURL);
+    }
+});
+
+function saveProfile(fullName, username, bio, imageURL) {
+    const profile = {
+        fullName,
+        username,
+        bio,
+        imageURL,
+    };
+
+    localStorage.setItem("userProfile", JSON.stringify(profile));
+
+    showApp();
+}
+
+function showApp() {
+    document.getElementById("setupScreen").classList.remove("active");
+    document.getElementById("appScreen").classList.add("active");
+
+    const profile = JSON.parse(localStorage.getItem("userProfile"));
+
+    document.getElementById("displayName").innerText = profile.fullName;
+    document.getElementById("displayUsername").innerText = "@" + profile.username;
+    document.getElementById("displayBio").innerText = profile.bio;
+
+    if (profile.imageURL) {
+        document.getElementById("displayPic").src = profile.imageURL;
+    } else {
+        document.getElementById("displayPic").src = "https://via.placeholder.com/120";
+    }
+}
+
+function editProfile() {
+    document.getElementById("appScreen").classList.remove("active");
+    document.getElementById("setupScreen").classList.add("active");
+
+    const profile = JSON.parse(localStorage.getItem("userProfile"));
+
+    document.getElementById("fullName").value = profile.fullName;
+    document.getElementById("username").value = profile.username;
+    document.getElementById("bio").value = profile.bio;
+}
