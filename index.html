@@ -1,1 +1,61 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media App</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active">
+        <h1>Welcome to the Social Media App</h1>
+        <p>Created by <strong>SayedRahim Sadat</strong></p>
+        <button onclick="startSetup()">Get Started</button>
+    </div>
+
+    <!-- Setup Form Screen -->
+    <div id="setupScreen" class="screen">
+        <h2>Create Your Profile</h2>
+        <form id="setupForm">
+            <label>Full Name</label>
+            <input type="text" id="fullName" required />
+
+            <label>Username</label>
+            <input type="text" id="username" required />
+
+            <label>Short Bio</label>
+            <textarea id="bio" required></textarea>
+
+            <label>Profile Picture</label>
+            <input type="file" id="profilePic" accept="image/*" />
+
+            <button type="submit">Save Profile</button>
+        </form>
+    </div>
+
+    <!-- Main App -->
+    <div id="appScreen" class="screen">
+        <header>
+            <h2>My Social App</h2>
+            <button onclick="editProfile()">Edit Profile</button>
+        </header>
+
+        <section class="profile-box">
+            <img id="displayPic" class="profile-img" />
+            <h3 id="displayName"></h3>
+            <p id="displayUsername"></p>
+            <p id="displayBio"></p>
+        </section>
+
+        <section class="feed">
+            <h3>Your Feed</h3>
+            <p>Feed features will be added later...</p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
