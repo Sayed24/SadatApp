@@ -9,7 +9,7 @@
 <body>
   <div id="root">
 
-    <!-- WELCOME / ONBOARDING -->
+    <!-- WELCOME / ONBOARD -->
     <div id="welcome" class="screen active">
       <div class="card welcome-card">
         <h1>Welcome to SadatApp</h1>
@@ -18,7 +18,7 @@
           <button id="getStarted" class="btn">Get Started</button>
           <button id="quickDemo" class="btn ghost">Try Demo Data</button>
         </div>
-        <p class="muted small">By continuing you accept this demo app stores data only in your browser (localStorage).</p>
+        <p class="muted small">This demo stores data only in your browser (localStorage).</p>
       </div>
     </div>
 
@@ -27,12 +27,13 @@
       <!-- top bar -->
       <header class="topbar">
         <div class="brand">SadatApp <small class="byline">by SayedRahim Sadat</small></div>
+
         <div class="top-actions">
           <input id="searchInput" placeholder="Search users or posts..." />
           <button id="newPostBtn" class="btn small">New</button>
           <button id="themeToggle" class="btn small">🌓</button>
           <div id="notifCount" class="notif-badge hidden"></div>
-          <div id="userAvatar" class="avatar small-avatar"></div>
+          <div id="userAvatar" class="avatar small-avatar" title="Open profile"></div>
         </div>
       </header>
 
@@ -111,7 +112,6 @@
 
     <!-- MODAL ROOT -->
     <div id="modalRoot"></div>
-
   </div>
 
   <script src="script.js"></script>
