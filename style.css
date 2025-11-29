@@ -1,1 +1,77 @@
 
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+/* Screen controller */
+.screen {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Welcome Screen */
+#welcomeScreen {
+    margin-top: 100px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #0073ff;
+    color: #fff;
+}
+
+/* Setup Form */
+#setupForm {
+    max-width: 400px;
+    margin: auto;
+    text-align: left;
+}
+
+#setupForm input, #setupForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* App Screen */
+header {
+    background: #0073ff;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-box {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0073ff;
+}
