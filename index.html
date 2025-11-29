@@ -1,89 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SadatApp</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SadatApp</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="root">
 
-    <!-- Welcome Screen -->
-    <div id="welcomeScreen" class="screen active">
+    <!-- WELCOME / ONBOARDING -->
+    <div id="welcome" class="screen active">
+      <div class="card welcome-card">
         <h1>Welcome to SadatApp</h1>
-        <p>Created by <strong>SayedRahim Sadat</strong></p>
-        <button onclick="openSetup()">Get Started</button>
+        <p class="muted">A social place created by <strong>SayedRahim Sadat</strong></p>
+        <div class="welcome-actions">
+          <button id="getStarted" class="btn">Get Started</button>
+          <button id="quickDemo" class="btn ghost">Try Demo Data</button>
+        </div>
+        <p class="muted small">By continuing you accept this demo app stores data only in your browser (localStorage).</p>
+      </div>
     </div>
 
-    <!-- Setup Screen -->
-    <div id="setupScreen" class="screen">
-        <h2>Create Your SadatApp Profile</h2>
-        <form id="setupForm">
-            <label>Full Name</label>
-            <input type="text" id="fullName" required />
+    <!-- APP -->
+    <div id="app" class="screen">
+      <!-- top bar -->
+      <header class="topbar">
+        <div class="brand">SadatApp <small class="byline">by SayedRahim Sadat</small></div>
+        <div class="top-actions">
+          <input id="searchInput" placeholder="Search users or posts..." />
+          <button id="newPostBtn" class="btn small">New</button>
+          <button id="themeToggle" class="btn small">🌓</button>
+          <div id="notifCount" class="notif-badge hidden"></div>
+          <div id="userAvatar" class="avatar small-avatar"></div>
+        </div>
+      </header>
 
-            <label>Username</label>
-            <input type="text" id="username" required />
+      <div class="layout">
+        <!-- left -->
+        <aside class="leftcol">
+          <section class="card profile-card">
+            <img id="leftAvatar" class="avatar large-avatar" src="" alt="avatar" />
+            <h3 id="leftName">Guest</h3>
+            <div id="leftHandle" class="muted">@guest</div>
+            <p id="leftBio" class="muted small">No bio yet.</p>
+            <div class="row">
+              <button id="editProfileBtn" class="btn small">Edit Profile</button>
+              <button id="logoutBtn" class="btn ghost small">Reset</button>
+            </div>
+          </section>
 
-            <label>Short Bio</label>
-            <textarea id="bio" required></textarea>
+          <section class="card friends-card">
+            <h4>Friends</h4>
+            <div id="friendsList" class="list"></div>
+            <div class="row" style="margin-top:8px">
+              <input id="followInput" placeholder="follow username" />
+              <button id="followBtn" class="btn small">Follow</button>
+            </div>
+          </section>
 
-            <label>Profile Picture</label>
-            <input type="file" id="profilePic" accept="image/*" />
+          <section class="card stories-card">
+            <h4>Stories</h4>
+            <div id="storiesStrip" class="stories-strip"></div>
+            <button id="addStoryBtn" class="btn small">Add Story</button>
+          </section>
+        </aside>
 
-            <button type="submit">Save Profile</button>
-        </form>
+        <!-- center -->
+        <main class="centercol">
+          <section class="card compose-card">
+            <textarea id="composeText" placeholder="What's happening?"></textarea>
+            <div class="row">
+              <input id="composeImage" type="file" accept="image/*" />
+              <select id="composeType">
+                <option value="text">Text</option>
+                <option value="photo">Photo</option>
+                <option value="quote">Quote</option>
+              </select>
+              <button id="publishBtn" class="btn">Publish</button>
+              <button id="saveDraftBtn" class="btn ghost">Save</button>
+            </div>
+          </section>
+
+          <section id="feed" class="feed-col"></section>
+        </main>
+
+        <!-- right -->
+        <aside class="rightcol">
+          <section class="card msgs-card">
+            <h4>Messages</h4>
+            <div id="convos" class="list"></div>
+            <button id="newConvoBtn" class="btn small">New Message</button>
+          </section>
+
+          <section class="card admin-card">
+            <h4>Quick Stats</h4>
+            <div id="statUsers">Users: 0</div>
+            <div id="statPosts">Posts: 0</div>
+            <div id="statStories">Stories: 0</div>
+            <button id="openAdminBtn" class="btn ghost small">Open Admin</button>
+          </section>
+        </aside>
+      </div>
+
+      <footer class="footer card">
+        <div>© <span id="year"></span> SadatApp</div>
+        <div class="muted small">Client demo — data stored in browser</div>
+      </footer>
     </div>
 
-    <!-- Main App -->
-    <div id="appScreen" class="screen">
+    <!-- MODAL ROOT -->
+    <div id="modalRoot"></div>
 
-        <header>
-            <h2>SadatApp</h2>
-            <button onclick="toggleDark()">🌓</button>
-        </header>
+  </div>
 
-        <!-- Navigation -->
-        <nav class="navbar">
-            <button onclick="showPage('feedPage')">Feed</button>
-            <button onclick="showPage('profilePage')">Profile</button>
-            <button onclick="showPage('messagesPage')">Messages</button>
-            <button onclick="showPage('friendsPage')">Friends</button>
-            <button onclick="showPage('settingsPage')">Settings</button>
-        </nav>
-
-        <!-- Pages -->
-        <section id="feedPage" class="page active">
-            <h3>Your Feed</h3>
-            <p>Feed features coming soon...</p>
-        </section>
-
-        <section id="profilePage" class="page">
-            <h3>Your Profile</h3>
-            <img id="displayPic" class="profile-img" />
-            <h3 id="displayName"></h3>
-            <p id="displayUsername"></p>
-            <p id="displayBio"></p>
-            <button onclick="openSetup()">Edit Profile</button>
-        </section>
-
-        <section id="messagesPage" class="page">
-            <h3>Messages</h3>
-            <p>Messaging system coming soon...</p>
-        </section>
-
-        <section id="friendsPage" class="page">
-            <h3>Friends</h3>
-            <p>Friends system coming soon...</p>
-        </section>
-
-        <section id="settingsPage" class="page">
-            <h3>Settings</h3>
-            <button onclick="logout()">Logout</button>
-        </section>
-
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
