@@ -1,53 +1,21 @@
-
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f4f4;
+    transition: 0.3s;
 }
 
-/* Screen controller */
+/* Screens */
 .screen {
     display: none;
     padding: 20px;
     text-align: center;
 }
-
 .screen.active {
     display: block;
 }
 
-/* Welcome Screen */
-#welcomeScreen {
-    margin-top: 100px;
-}
-
-button {
-    padding: 12px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    border: none;
-    border-radius: 6px;
-    background: #0073ff;
-    color: #fff;
-}
-
-/* Setup Form */
-#setupForm {
-    max-width: 400px;
-    margin: auto;
-    text-align: left;
-}
-
-#setupForm input, #setupForm textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-/* App Screen */
+/* Header */
 header {
     background: #0073ff;
     color: white;
@@ -57,21 +25,62 @@ header {
     align-items: center;
 }
 
-.profile-box {
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-around;
     background: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 10px #ccc;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.navbar button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
 }
 
+/* Pages */
+.page {
+    display: none;
+    padding: 20px;
+}
+.page.active {
+    display: block;
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    background: #0073ff;
+    color: white;
+    margin-top: 10px;
+}
+
+/* Profile */
 .profile-img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #0073ff;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background: #111;
+    color: white;
+}
+.dark-mode .navbar {
+    background: #222;
+}
+.dark-mode header {
+    background: #0057c2;
+}
+.dark-mode .profile-img {
+    border-color: #3399ff;
 }
