@@ -1,68 +1,60 @@
-
-function startSetup() {
-    document.getElementById("welcomeScreen").classList.remove("active");
+function openSetup() {
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     document.getElementById("setupScreen").classList.add("active");
+}
+
+function showPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
 }
 
 document.getElementById("setupForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const fullName = document.getElementById("fullName").value;
-    const username = document.getElementById("username").value;
-    const bio = document.getElementById("bio").value;
-    const fileInput = document.getElementById("profilePic");
+    const name = fullName.value;
+    const user = username.value;
+    const bioText = bio.value;
+    const file = profilePic.files[0];
 
-    let imageURL = "";
-
-    if (fileInput.files.length > 0) {
+    if (file) {
         const reader = new FileReader();
-        reader.onload = function () {
-            imageURL = reader.result;
-            saveProfile(fullName, username, bio, imageURL);
-        };
-        reader.readAsDataURL(fileInput.files[0]);
+        reader.onload = () => saveProfile(name, user, bioText, reader.result);
+        reader.readAsDataURL(file);
     } else {
-        saveProfile(fullName, username, bio, imageURL);
+        saveProfile(name, user, bioText, "");
     }
 });
 
-function saveProfile(fullName, username, bio, imageURL) {
-    const profile = {
-        fullName,
-        username,
-        bio,
-        imageURL,
-    };
-
-    localStorage.setItem("userProfile", JSON.stringify(profile));
-
-    showApp();
+function saveProfile(name, username, bio, image) {
+    const profile = { name, username, bio, image };
+    localStorage.setItem("sadat_profile", JSON.stringify(profile));
+    loadProfile();
 }
 
-function showApp() {
-    document.getElementById("setupScreen").classList.remove("active");
+function loadProfile() {
+    const data = localStorage.getItem("sadat_profile");
+
+    if (!data) return;
+
+    const p = JSON.parse(data);
+
+    displayName.innerText = p.name;
+    displayUsername.innerText = "@" + p.username;
+    displayBio.innerText = p.bio;
+
+    displayPic.src = p.image || "https://via.placeholder.com/120";
+
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
     document.getElementById("appScreen").classList.add("active");
-
-    const profile = JSON.parse(localStorage.getItem("userProfile"));
-
-    document.getElementById("displayName").innerText = profile.fullName;
-    document.getElementById("displayUsername").innerText = "@" + profile.username;
-    document.getElementById("displayBio").innerText = profile.bio;
-
-    if (profile.imageURL) {
-        document.getElementById("displayPic").src = profile.imageURL;
-    } else {
-        document.getElementById("displayPic").src = "https://via.placeholder.com/120";
-    }
 }
 
-function editProfile() {
-    document.getElementById("appScreen").classList.remove("active");
-    document.getElementById("setupScreen").classList.add("active");
-
-    const profile = JSON.parse(localStorage.getItem("userProfile"));
-
-    document.getElementById("fullName").value = profile.fullName;
-    document.getElementById("username").value = profile.username;
-    document.getElementById("bio").value = profile.bio;
+function toggleDark() {
+    document.body.classList.toggle("dark-mode");
 }
+
+function logout() {
+    localStorage.removeItem("sadat_profile");
+    location.reload();
+}
+
+loadProfile();
