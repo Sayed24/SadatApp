@@ -59,6 +59,13 @@ body{margin:0;font-family:Inter,Arial,system-ui;background:var(--bg);color:#0710
 /* welcome */
 .welcome-card{max-width:520px;margin:80px auto;padding:28px;text-align:center}
 
+/* notif badge */
+.notif-badge{background:#ff4757;color:white;padding:6px 8px;border-radius:20px;font-weight:700;margin-left:6px}
+.hidden{display:none}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.row{display:flex;gap:8px;align-items:center}
+
 /* small screens */
 @media (max-width:980px){
   .layout{grid-template-columns:1fr; padding:10px}
@@ -71,7 +78,3 @@ body{margin:0;font-family:Inter,Arial,system-ui;background:var(--bg);color:#0710
 body.dark{background:#071024;color:#dbeafe}
 body.dark .card{background:#07162a;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
 body.dark .topbar{background:#02203a}
-.hidden{display:none}
-.muted{color:var(--muted)}
-.small{font-size:12px}
-.row{display:flex;gap:8px;align-items:center}
