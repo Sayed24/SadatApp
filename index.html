@@ -1,24 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media App</title>
+    <title>SadatApp</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
     <!-- Welcome Screen -->
     <div id="welcomeScreen" class="screen active">
-        <h1>Welcome to the Social Media App</h1>
+        <h1>Welcome to SadatApp</h1>
         <p>Created by <strong>SayedRahim Sadat</strong></p>
-        <button onclick="startSetup()">Get Started</button>
+        <button onclick="openSetup()">Get Started</button>
     </div>
 
-    <!-- Setup Form Screen -->
+    <!-- Setup Screen -->
     <div id="setupScreen" class="screen">
-        <h2>Create Your Profile</h2>
+        <h2>Create Your SadatApp Profile</h2>
         <form id="setupForm">
             <label>Full Name</label>
             <input type="text" id="fullName" required />
@@ -38,22 +37,51 @@
 
     <!-- Main App -->
     <div id="appScreen" class="screen">
+
         <header>
-            <h2>My Social App</h2>
-            <button onclick="editProfile()">Edit Profile</button>
+            <h2>SadatApp</h2>
+            <button onclick="toggleDark()">🌓</button>
         </header>
 
-        <section class="profile-box">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <button onclick="showPage('feedPage')">Feed</button>
+            <button onclick="showPage('profilePage')">Profile</button>
+            <button onclick="showPage('messagesPage')">Messages</button>
+            <button onclick="showPage('friendsPage')">Friends</button>
+            <button onclick="showPage('settingsPage')">Settings</button>
+        </nav>
+
+        <!-- Pages -->
+        <section id="feedPage" class="page active">
+            <h3>Your Feed</h3>
+            <p>Feed features coming soon...</p>
+        </section>
+
+        <section id="profilePage" class="page">
+            <h3>Your Profile</h3>
             <img id="displayPic" class="profile-img" />
             <h3 id="displayName"></h3>
             <p id="displayUsername"></p>
             <p id="displayBio"></p>
+            <button onclick="openSetup()">Edit Profile</button>
         </section>
 
-        <section class="feed">
-            <h3>Your Feed</h3>
-            <p>Feed features will be added later...</p>
+        <section id="messagesPage" class="page">
+            <h3>Messages</h3>
+            <p>Messaging system coming soon...</p>
         </section>
+
+        <section id="friendsPage" class="page">
+            <h3>Friends</h3>
+            <p>Friends system coming soon...</p>
+        </section>
+
+        <section id="settingsPage" class="page">
+            <h3>Settings</h3>
+            <button onclick="logout()">Logout</button>
+        </section>
+
     </div>
 
     <script src="script.js"></script>
